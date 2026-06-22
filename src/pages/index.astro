@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Contributors from '../components/Contributors.astro';
+import GitHubContributions from '../components/GitHubContributions.astro';
 ---
 
 <BaseLayout title="Nurefendi — Pengembang Web & Penulis">
@@ -129,12 +129,12 @@ import Contributors from '../components/Contributors.astro';
     </div>
   </section>
 
-  <!-- Kontributor -->
-  <section class="section" id="kontributor">
+  <!-- Kontribusi GitHub -->
+  <section class="section" id="kontribusi">
     <div class="container">
-      <h2 class="section-title">Kontributor</h2>
-      <p class="section-subtitle">Mereka yang berkontribusi di repositori ini.</p>
-      <Contributors repo="nurefendi/nurefendi.github.io" />
+      <h2 class="section-title">Aktivitas GitHub</h2>
+      <p class="section-subtitle">Grafik kontribusi dalam 1 tahun terakhir.</p>
+      <GitHubContributions />
     </div>
   </section>
 
