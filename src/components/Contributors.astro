@@ -1,0 +1,89 @@
+---
+export interface Props {
+  repo: string;
+  max?: number;
+}
+
+const { repo, max = 12 } = Astro.props;
+
+let contributors = [];
+let error = '';
+
+try {
+  const res = await fetch(`https://api.github.com/repos/${repo}/contributors?per_page=${max}`);
+  if (res.ok) {
+    contributors = await res.json();
+  } else {
+    error = `Gagal memuat kontributor (${res.status})`;
+  }
+} catch (e) {
+  error = 'Gagal terhubung ke GitHub API';
+}
+---
+
+{
+  error ? (
+    <p class="contrib-error">{error}</p>
+  ) : contributors.length > 0 ? (
+    <div class="contrib-grid">
+      {contributors.map((c) => (
+        <a href={c.html_url} target="_blank" rel="noopener" class="contrib-card" title={`${c.login} — ${c.contributions} kontribusi`}>
+          <img src={c.avatar_url} alt={c.login} width="56" height="56" loading="lazy" />
+          <span class="contrib-name">{c.login}</span>
+          <span class="contrib-count">{c.contributions} kontribusi</span>
+        </a>
+      ))}
+    </div>
+  ) : (
+    <p class="contrib-empty">Belum ada kontributor.</p>
+  )
+}
+
+<style>
+  .contrib-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .contrib-card {
+    background: var(--surface);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .contrib-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+
+  .contrib-card img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .contrib-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .contrib-count {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .contrib-error, .contrib-empty {
+    color: var(--muted);
+    text-align: center;
+    padding: 2rem;
+  }
+</style>

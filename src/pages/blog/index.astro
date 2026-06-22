@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const published = posts
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog — Nurefendi" description="Artikel dan tulisan Nurefendi seputar teknologi, pengembangan web, dan karier.">
+  <section class="section">
+    <div class="container">
+      <h1 class="page-title">Blog</h1>
+      <p class="section-subtitle">Artikel, tutorial, dan catatan seputar teknologi dan pengembangan web.</p>
+
+      {
+        published.length > 0 ? (
+          <div class="blog-list">
+            {published.map((post) => (
+              <article class="blog-card card">
+                <time datetime={post.data.date.toISOString()} class="blog-date">
+                  {new Intl.DateTimeFormat('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.date)}
+                </time>
+                <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+                <p>{post.data.description}</p>
+                <div class="blog-tags">
+                  {post.data.tags?.map((tag) => <span class="tag">{tag}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">Belum ada artikel. Nantikan postingan berikutnya!</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2.4rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .blog-list {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .blog-card h2 {
+    margin: 0.5rem 0 0.75rem;
+    font-size: 1.3rem;
+  }
+
+  .blog-card h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .blog-card h2 a:hover {
+    color: var(--primary);
+  }
+
+  .blog-card p {
+    margin: 0 0 0.75rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  .blog-date {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .blog-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .empty-state {
+    color: var(--muted);
+    text-align: center;
+    padding: 4rem 0;
+  }
+</style>
