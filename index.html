@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nurefendi | Beranda</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --text: #14213d;
+      --muted: #52607a;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --shadow: 0 20px 45px rgba(37, 99, 235, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 3rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 0;
+    }
+
+    .hero-card {
+      width: 100%;
+      background: var(--surface);
+      border-radius: 28px;
+      padding: 4rem;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 1.05;
+    }
+
+    .lead {
+      margin: 1.5rem 0 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      border-radius: 999px;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .button {
+      padding: 0.95rem 1.5rem;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .button-secondary {
+      color: var(--primary);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      background: rgba(37, 99, 235, 0.06);
+    }
+
+    .button-secondary:hover {
+      background: rgba(37, 99, 235, 0.12);
+    }
+
+    .panel {
+      background: linear-gradient(180deg, #1e3a8a 0%, #1d4ed8 100%);
+      color: #fff;
+      border-radius: 24px;
+      padding: 2rem;
+      display: grid;
+      align-content: center;
+      gap: 1.5rem;
+    }
+
+    .panel h2,
+    .panel p {
+      margin: 0;
+    }
+
+    .stats {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .stat {
+      padding: 1rem 1.25rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .section {
+      padding: 0 0 5rem;
+    }
+
+    .section-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 1.75rem;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    footer {
+      padding: 0 0 3rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .hero-card,
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div>
+            <p class="eyebrow">Selamat Datang</p>
+            <h1>Rumah digital Nurefendi di internet.</h1>
+            <p class="lead">
+              Landing page sederhana untuk memperkenalkan diri, menampilkan karya, dan membagikan
+              hal-hal menarik yang sedang dibangun. Ringkas, cepat, dan siap dikembangkan.
+            </p>
+            <div class="actions">
+              <a class="button button-primary" href="https://github.com/nurefendi">Lihat GitHub</a>
+              <a class="button button-secondary" href="#about">Pelajari lebih lanjut</a>
+            </div>
+          </div>
+          <aside class="panel">
+            <div>
+              <h2>Dibuat untuk memberi kesan pertama yang kuat</h2>
+              <p>
+                Halaman ini memberi pengenalan singkat sekaligus pondasi yang cukup untuk
+                dikembangkan menjadi portofolio, blog, atau halaman profil lengkap.
+              </p>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <strong>01</strong>
+                Satu halaman ringan yang siap dipakai di GitHub Pages.
+              </div>
+              <div class="stat">
+                <strong>Cepat</strong>
+                Tanpa framework atau dependensi eksternal.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container section-grid">
+        <article class="card">
+          <h3>Tentang halaman ini</h3>
+          <p>
+            Dirancang sebagai landing page bersih yang langsung berjalan di hosting statis dan
+            mudah disesuaikan seiring berkembangnya situs.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Bisa dikembangkan menjadi</h3>
+          <p>
+            Portofolio, blog, katalog proyek, atau halaman profil yang lebih lengkap dengan
+            menambahkan section baru dan konten tambahan.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Langkah berikutnya</h3>
+          <p>
+            Ganti teks placeholder ini dengan profil singkat, karya unggulan, dan tautan kontak
+            agar halaman ini benar-benar merepresentasikan diri Anda.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 Nurefendi. Dibangun sebagai landing page yang ringan.</div>
+  </footer>
+</body>
+</html>
