@@ -8,19 +8,19 @@ const published = posts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="Blog — Nurefendi" description="Artikel dan tulisan Nurefendi seputar teknologi, pengembangan web, dan karier.">
+<BaseLayout title="Blog — Nur Efendi" description="Articles and writings about technology, web development, and career.">
   <section class="section">
     <div class="container">
       <h1 class="page-title">Blog</h1>
-      <p class="section-subtitle">Artikel, tutorial, dan catatan seputar teknologi dan pengembangan web.</p>
+      <p class="page-subtitle">Articles, tutorials, and notes about technology and web development.</p>
 
       {
         published.length > 0 ? (
           <div class="blog-list">
             {published.map((post) => (
-              <article class="blog-card card">
+              <article class="blog-card">
                 <time datetime={post.data.date.toISOString()} class="blog-date">
-                  {new Intl.DateTimeFormat('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.date)}
+                  {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.date)}
                 </time>
                 <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
                 <p>{post.data.description}</p>
@@ -31,7 +31,7 @@ const published = posts
             ))}
           </div>
         ) : (
-          <p class="empty-state">Belum ada artikel. Nantikan postingan berikutnya!</p>
+          <p class="empty-state">No posts yet. Stay tuned!</p>
         )
       }
     </div>
@@ -40,27 +40,33 @@ const published = posts
 
 <style>
   .page-title {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     margin: 0 0 0.25rem;
+    font-weight: 700;
+  }
+
+  .page-subtitle {
+    color: var(--muted);
+    margin: 0 0 2.5rem;
+    font-size: 1rem;
   }
 
   .blog-list {
     display: grid;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .blog-card h2 {
-    margin: 0.5rem 0 0.75rem;
-    font-size: 1.3rem;
+    margin: 0.3rem 0 0.5rem;
+    font-size: 1.2rem;
   }
 
   .blog-card h2 a {
     color: var(--text);
-    text-decoration: none;
   }
 
   .blog-card h2 a:hover {
-    color: var(--primary);
+    opacity: 0.6;
   }
 
   .blog-card p {
@@ -78,6 +84,14 @@ const published = posts
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius);
   }
 
   .empty-state {

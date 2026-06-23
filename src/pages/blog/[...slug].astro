@@ -16,15 +16,15 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BaseLayout title={`${post.data.title} — Nurefendi`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} — Nur Efendi`} description={post.data.description}>
   <article class="blog-post">
     <div class="container">
       <header class="post-header">
-        <a href="/blog" class="back-link">&larr; Kembali ke Blog</a>
+        <a href="/blog" class="back-link">&larr; Back to Blog</a>
         <h1>{post.data.title}</h1>
         <div class="post-meta">
           <time datetime={post.data.date.toISOString()}>
-            {new Intl.DateTimeFormat('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.date)}
+            {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.date)}
           </time>
           <div class="post-tags">
             {post.data.tags?.map((tag) => <span class="tag">{tag}</span>)}
@@ -56,7 +56,7 @@ const { Content } = await render(post);
   }
 
   .back-link:hover {
-    color: var(--primary);
+    color: var(--text);
   }
 
   .post-header h1 {
@@ -77,6 +77,14 @@ const { Content } = await render(post);
   .post-tags {
     display: flex;
     gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.6rem;
+    border-radius: var(--radius);
   }
 
   .post-content {
@@ -114,25 +122,25 @@ const { Content } = await render(post);
   }
 
   .post-content a {
-    color: var(--primary);
     text-decoration: underline;
   }
 
   .post-content code {
-    background: var(--primary-light);
+    background: var(--border);
     padding: 0.15rem 0.4rem;
-    border-radius: 6px;
+    border-radius: var(--radius);
     font-size: 0.9em;
   }
 
   .post-content pre {
-    background: #1e293b;
-    color: #e2e8f0;
+    background: #f5f5f5;
+    color: var(--text);
     padding: 1.25rem;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius);
     overflow-x: auto;
     margin: 0 0 1.25rem;
     font-size: 0.9rem;
+    border: 1px solid var(--border);
   }
 
   .post-content pre code {
@@ -142,14 +150,17 @@ const { Content } = await render(post);
   }
 
   .post-content blockquote {
-    border-left: 4px solid var(--primary);
+    border-left: 3px solid var(--border);
     margin: 0 0 1.25rem;
     padding: 0.75rem 1.25rem;
-    background: var(--primary-light);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--muted);
   }
 
   .post-content blockquote p {
     margin: 0;
+  }
+
+  [data-theme="dark"] .post-content pre {
+    background: #111;
   }
 </style>
